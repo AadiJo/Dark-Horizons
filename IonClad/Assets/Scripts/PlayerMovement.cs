@@ -44,8 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        
-        
+
+
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("Jump");
 
             }
-            
+
         }
 
         if (controller.m_Falling)
@@ -95,16 +95,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public void respawn()
-    {
-
-        transform.position = initialCords;
-
-    }
-
     void FixedUpdate()
     {
-        
+
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
     }
