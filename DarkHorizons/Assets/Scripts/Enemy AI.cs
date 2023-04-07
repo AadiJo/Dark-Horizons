@@ -26,7 +26,9 @@ public class EnemyAI : MonoBehaviour
     private int currentWaypoint = 0;
     RaycastHit2D isGrounded;
     Seeker seeker;
+    public CircleCollider2D col;
     Rigidbody2D rb;
+    public LayerMask groundlayer;
 
     public void Start()
     {
@@ -42,6 +44,7 @@ public class EnemyAI : MonoBehaviour
         {
             PathFollow();
         }
+
     }
 
     private void UpdatePath()
@@ -66,11 +69,12 @@ public class EnemyAI : MonoBehaviour
         }
 
         // See if colliding with anything
-        Vector3 startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
-        isGrounded = Physics2D.Raycast(startOffset, -Vector3.up, 0.05f);
+        //Vector3 startOffset = transform.position - new Vector3(0f, GetComponent<Collider2D>().bounds.extents.y + jumpCheckOffset);
+        isGrounded = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0, Vector2.down, 0.1f, groundlayer);
 
         // Direction Calculation
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        //direction = new Vector2(direction.x, 0);
         Vector2 force = direction * speed * Time.deltaTime;
 
         // Jump
@@ -97,11 +101,36 @@ public class EnemyAI : MonoBehaviour
         {
             if (rb.velocity.x > 0.05f)
             {
-                transform.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                if (gameObject.name.Contains("Crab"))
+                {
+
+                    transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                }
+                else
+                {
+
+                    transform.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                }
+
             }
             else if (rb.velocity.x < -0.05f)
             {
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                if (gameObject.name.Contains("Crab"))
+                {
+
+                    transform.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                }
+                else
+                {
+
+                    transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                }
+
             }
         }
     }
@@ -119,4 +148,4 @@ public class EnemyAI : MonoBehaviour
             currentWaypoint = 0;
         }
     }
-} 
+}

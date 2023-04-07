@@ -10,11 +10,22 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
 
+    private Rigidbody2D rb;
+
     public LayerMask enemyLayers;
 
     public PlayerMovement playerMovement;
 
     public int attackDamage = 10;
+    private PlayerHealth health;
+
+    void Start()
+    {
+
+        health = GetComponent<PlayerHealth>();
+        rb = GetComponent<Rigidbody2D>();
+
+    }
 
     void Update()
     {
@@ -87,6 +98,32 @@ public class PlayerCombat : MonoBehaviour
         isAttacking = true;
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+
+        if (other.gameObject.layer == 9)
+        {
+
+            health.TakeDamage(1);
+            if (rb.velocity.x < 0)
+            {
+
+                rb.AddForce(new Vector2(2000, 200));
+
+            }
+            else
+            {
+
+                rb.AddForce(new Vector2(-2000, 200));
+
+            }
+
+
+
+        }
 
     }
 }

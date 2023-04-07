@@ -60,7 +60,7 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
-        if (m_Rigidbody2D.velocity.y < 0)
+        if (m_Rigidbody2D.velocity.y < -0.1)
         {
             m_Falling = true;
         }

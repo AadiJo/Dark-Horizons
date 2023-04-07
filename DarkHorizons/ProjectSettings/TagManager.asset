@@ -14,8 +14,8 @@ TagManager:
   - Ground
   - Background
   - Enemy
-  - 
-  - 
+  - Spike
+  - PowerUp
   - 
   - 
   - 
@@ -50,8 +50,14 @@ TagManager:
   - name: Text
     uniqueID: 1356773815
     locked: 0
+  - name: Powerup
+    uniqueID: 1049195491
+    locked: 0
   - name: Player
     uniqueID: 3695344147
+    locked: 0
+  - name: WorldSpaceUI
+    uniqueID: 142995939
     locked: 0
   - name: Ground
     uniqueID: 2430638749
