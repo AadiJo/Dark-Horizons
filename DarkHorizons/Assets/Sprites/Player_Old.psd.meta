@@ -103,6 +103,30 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -873,45 +897,45 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_11: 1376137610
-      Player_17: -1092678221
-      Player_20: -1751796478
-      Player_19: -694133778
-      Player_33: 1009440304
-      Player_2: 684288148
-      Player_4: 621315954
-      Player_18: -912346046
-      Player_30: 1568886504
-      Player_23: -1544069309
-      Player_22: 35546479
-      Player_25: -2045329568
-      Player_34: -157153570
-      Player_36: 778303731
-      Player_12: -931594738
-      Player_6: -585772681
-      Player_29: -366771377
-      Player_1: -1239506780
-      Player_31: 1964024037
-      Player_9: 2121750887
-      Player_14: 208274740
       Player_0: -85052301
-      Player_7: -1125223501
-      Player_16: 1817924367
-      Player_3: 1058892953
-      Player_8: -1509219938
+      Player_1: -1239506780
       Player_10: -1679938780
+      Player_11: 1376137610
+      Player_12: -931594738
+      Player_13: 1396092465
+      Player_14: 208274740
+      Player_15: -52760792
+      Player_16: 1817924367
+      Player_17: -1092678221
+      Player_18: -912346046
+      Player_19: -694133778
+      Player_2: 684288148
+      Player_20: -1751796478
+      Player_21: -2002797332
+      Player_22: 35546479
+      Player_23: -1544069309
+      Player_24: 830603547
+      Player_25: -2045329568
       Player_26: -543257832
       Player_27: -2068582627
       Player_28: 1703885836
-      Player_15: -52760792
-      Player_13: 1396092465
-      Player_21: -2002797332
+      Player_29: -366771377
+      Player_3: 1058892953
+      Player_30: 1568886504
+      Player_31: 1964024037
       Player_32: -1403237678
-      Player_38: 1703597355
-      Player_24: 830603547
-      Player_37: 1541331731
-      Player_5: 1725046054
+      Player_33: 1009440304
+      Player_34: -157153570
       Player_35: 1574712094
+      Player_36: 778303731
+      Player_37: 1541331731
+      Player_38: 1703597355
+      Player_4: 621315954
+      Player_5: 1725046054
+      Player_6: -585772681
+      Player_7: -1125223501
+      Player_8: -1509219938
+      Player_9: 2121750887
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

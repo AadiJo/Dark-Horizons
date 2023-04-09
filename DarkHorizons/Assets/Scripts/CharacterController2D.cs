@@ -10,7 +10,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
-    [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
+    [SerializeField] private Collider2D m_CrouchDisableCollider;
+    private Animator animator;            // A collider that will be disabled when crouching
 
     public PlayerMovement playerMovement;
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -41,6 +42,7 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -60,6 +62,18 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
+        if (!m_Grounded && !m_Falling)
+        {
+
+            GetComponent<BoxCollider2D>().isTrigger = true;
+
+        }
+        else
+        {
+
+            GetComponent<BoxCollider2D>().isTrigger = false;
+
+        }
         if (m_Rigidbody2D.velocity.y < -0.1)
         {
             m_Falling = true;
@@ -71,7 +85,14 @@ public class CharacterController2D : MonoBehaviour
 
         if (m_Grounded)
         {
+            animator.SetBool("Grounded", true);
             playerMovement.OnLanding();
+
+        }
+        else
+        {
+
+            animator.SetBool("Grounded", false);
 
         }
     }

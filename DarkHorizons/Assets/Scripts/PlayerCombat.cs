@@ -15,6 +15,7 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayers;
 
     public PlayerMovement playerMovement;
+    private GameManager gameManager;
 
     public int attackDamage = 10;
     private PlayerHealth health;
@@ -24,6 +25,7 @@ public class PlayerCombat : MonoBehaviour
 
         health = GetComponent<PlayerHealth>();
         rb = GetComponent<Rigidbody2D>();
+        gameManager = FindObjectOfType<GameManager>();
 
     }
 
@@ -50,30 +52,49 @@ public class PlayerCombat : MonoBehaviour
 
         }
 
+        if (health.godMode)
+        {
+
+            attackDamage = 1000;
+
+        }
+        else
+        {
+
+            attackDamage = 10;
+
+        }
+
     }
 
     private void Attack()
     {
 
-
-        if (!animator.GetBool("isJumping") && !animator.GetBool("isFalling"))
+        if (playerMovement.canMove && !PauseMenu.GameisPaused)
         {
-            //Play animation
-            animator.SetInteger("attackRandomizer", Random.Range(0, 2));
-            animator.SetTrigger("attack");
-            StartCoroutine(stopMovement());
 
-            // Detect enemies in range
-
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-            // Damage
-            foreach (Collider2D enemy in hitEnemies)
+            if (!animator.GetBool("isJumping") && !animator.GetBool("isFalling"))
             {
+                //Play animation
+                animator.SetInteger("attackRandomizer", Random.Range(0, 2));
+                FindObjectOfType<AudioManager>().Play("PlayerAttack");
+                animator.SetTrigger("attack");
+                StartCoroutine(stopMovement());
 
-                enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+                // Detect enemies in range
 
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+                // Damage
+                foreach (Collider2D enemy in hitEnemies)
+                {
+
+                    enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+
+                }
             }
+
+
         }
 
 
@@ -107,21 +128,14 @@ public class PlayerCombat : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
 
-            health.TakeDamage(1);
-            if (rb.velocity.x < 0)
+            health.TakeDamage(1, new float[] { 2000, 200 });
+            if (health.currentHealth <= 0)
             {
 
-                rb.AddForce(new Vector2(2000, 200));
+                gameManager.killerName = "SPIKE";
+                //Debug.Log("Death by SPIKE");
 
             }
-            else
-            {
-
-                rb.AddForce(new Vector2(-2000, 200));
-
-            }
-
-
 
         }
 
