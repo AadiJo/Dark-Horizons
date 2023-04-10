@@ -5,3 +5,5 @@ Dark Horizons is a heavy hitting, action packed, and exciting to play platformer
 ## Screenshots
 
 ![App Screenshot](https://i.imgur.com/EVn4Lue.png)
+![App Screenshot](https://i.imgur.com/oFQol2n.png)
+![App Screenshot](https://i.imgur.com/hlDpTId.png)
