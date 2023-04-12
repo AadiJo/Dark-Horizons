@@ -35,6 +35,12 @@ public class DealDamage : MonoBehaviour
                     string name = gameObject.name;
                     name = rgx.Replace(name, "");
                     name = name.ToUpper();
+                    if (name.Contains("CLONE"))
+                    {
+
+                        name = name.Substring(0, name.Length - 5);
+
+                    }
                     gameManager.killerName = name;
                     //Debug.Log("Death by " + name);
 
