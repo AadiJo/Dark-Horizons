@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     private GameObject player;
     public GameObject killLog;
+    private PauseMenu pauseMenu;
 
     [HideInInspector] public string killerName;
 
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
 
         player = GameObject.Find("Player");
+        pauseMenu = FindObjectOfType<PauseMenu>();
         //killLog = GameObject.Find("KillLog");
 
 
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
     public void respawn()
     {
 
+        pauseMenu.Resume();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
