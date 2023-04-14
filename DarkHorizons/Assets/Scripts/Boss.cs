@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Text.RegularExpressions;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class Boss : MonoBehaviour
     public Transform attackPoint;
     public LayerMask playerLayer;
     private GameManager gameManager;
+    public GameObject healthbar;
+    public TriggerEvent secondEvent;
 
     [Header("Attributes")]
     [Space]
@@ -39,6 +42,7 @@ public class Boss : MonoBehaviour
     {
 
         player = GameObject.FindGameObjectWithTag("Player");
+        healthbar.gameObject.GetComponent<Slider>().value = maxHealth;
         gameManager = FindObjectOfType<GameManager>();
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
@@ -174,6 +178,10 @@ public class Boss : MonoBehaviour
     public void TakeDamage(int damage)
     {
 
+        currentHealth -= damage;
+        StartCoroutine(DelayHealthAnim());
+
+
         if (currentHealth <= 1)
         {
 
@@ -181,7 +189,7 @@ public class Boss : MonoBehaviour
 
         }
         FindObjectOfType<AudioManager>().Play("EnemyHit");
-        currentHealth -= damage;
+
         StartCoroutine(hurtDelay());
 
         animator.SetTrigger("Hurt");
@@ -261,8 +269,22 @@ public class Boss : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
         GetComponent<SpriteRenderer>().enabled = false;
+        healthbar.gameObject.SetActive(false);
+        GetComponent<TriggerEvent>().triggered = true;
+        secondEvent.triggered = true;
+
 
         //GetComponent<Animator>().enabled = false;
+
+
+
+    }
+
+    IEnumerator DelayHealthAnim()
+    {
+        yield return new WaitForSeconds(0.4f);
+        healthbar.gameObject.GetComponent<Slider>().value = currentHealth;
+
 
 
 
