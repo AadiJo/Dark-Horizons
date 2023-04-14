@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Text.RegularExpressions;
 
 public class Boss : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Boss : MonoBehaviour
     private float currentHealth;
     public Transform attackPoint;
     public LayerMask playerLayer;
+    private GameManager gameManager;
 
     [Header("Attributes")]
     [Space]
@@ -37,6 +39,7 @@ public class Boss : MonoBehaviour
     {
 
         player = GameObject.FindGameObjectWithTag("Player");
+        gameManager = FindObjectOfType<GameManager>();
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
         if (player == null)
@@ -146,7 +149,24 @@ public class Boss : MonoBehaviour
         {
 
             player.GetComponent<PlayerHealth>().TakeDamage(attackDamage, knockback);
-            Debug.Log(player.gameObject.name);
+            if (player.gameObject.GetComponent<PlayerHealth>().currentHealth <= 0)
+            {
+
+                Regex rgx = new Regex("[^a-zA-Z -]");
+                string name = gameObject.name;
+                name = rgx.Replace(name, "");
+                name = name.ToUpper();
+                name = name.Replace("_", " ");
+                if (name.Contains("CLONE"))
+                {
+
+                    name = name.Substring(0, name.Length - 5);
+
+                }
+                gameManager.killerName = name;
+                //Debug.Log("Death by " + name);
+
+            }
         }
 
     }

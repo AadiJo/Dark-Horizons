@@ -152,8 +152,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   glow: {fileID: 0}
-  animator: {fileID: 1536341432305549371}
   attackPower: 5
+  knockback:
+  - 200
+  - 200
 --- !u!114 &5090143602321779055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  activateDistance: 200
+  activateDistance: 20
   pathUpdateSeconds: 0.5
   speed: 500
   nextWaypointDistance: 3

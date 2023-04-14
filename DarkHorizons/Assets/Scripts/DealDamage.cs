@@ -35,6 +35,7 @@ public class DealDamage : MonoBehaviour
                     string name = gameObject.name;
                     name = rgx.Replace(name, "");
                     name = name.ToUpper();
+                    name = name.Replace("_", " ");
                     if (name.Contains("CLONE"))
                     {
 
