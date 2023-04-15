@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     {
 
         pauseMenu.Resume();
+        FindObjectOfType<AudioManager>().Play("Main Track");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }

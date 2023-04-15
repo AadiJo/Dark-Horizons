@@ -42,24 +42,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
 
 
     private void Start()
     {
         Play("Main Track");
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-
-        Play("Main Track");
-        Time.timeScale = 1;
-
     }
 
 
@@ -95,10 +82,5 @@ public class AudioManager : MonoBehaviour
 
         s.source.Stop();
 
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

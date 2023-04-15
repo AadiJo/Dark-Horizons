@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator;
 
     public float currentHealth;
-    private float maxHealth = 20;
+    [HideInInspector] public float maxHealth = 30;
     private GameManager gameManager;
 
     public void SetHealthBar(float maxHealth)

@@ -22,15 +22,18 @@ public class Boss : MonoBehaviour
     private GameManager gameManager;
     public GameObject healthbar;
     public TriggerEvent secondEvent;
+    public enum directions { right, left };
 
     [Header("Attributes")]
     [Space]
 
     public float maxHealth = 50f;
+    public float triggerRange = 6f;
 
     public float speed = 1f;
     public float attackDamage = 10f;
     public float attackRange = 0.5f;
+    public directions defaultOrientation = directions.right;
 
     public float[] knockback = new float[] { 300f, 200f };
 
@@ -72,23 +75,53 @@ public class Boss : MonoBehaviour
 
                 if ((player.transform.position.x - transform.position.x) < 0)
                 {
-
-                    if (m_Right)
+                    if (defaultOrientation == directions.right)
                     {
 
-                        Flip();
+                        if (m_Right)
+                        {
+
+                            Flip();
+
+                        }
+                    }
+                    else
+                    {
+
+                        if (!m_Right)
+                        {
+
+                            Flip();
+
+                        }
 
                     }
+
 
 
                 }
                 else
                 {
 
-                    if (!m_Right)
+                    if (defaultOrientation == directions.right)
                     {
 
-                        Flip();
+                        if (!m_Right)
+                        {
+
+                            Flip();
+
+                        }
+                    }
+                    else
+                    {
+
+                        if (m_Right)
+                        {
+
+                            Flip();
+
+                        }
 
                     }
 
@@ -101,15 +134,36 @@ public class Boss : MonoBehaviour
             if (m_Right)
             {
 
-                velocity = 1;
-                direction = Vector2.right;
+                if (defaultOrientation == directions.right)
+                {
+
+                    direction = Vector2.right;
+
+                }
+                else
+                {
+
+                    direction = Vector2.left;
+
+                }
+
 
             }
             else
             {
 
-                velocity = -1;
-                direction = Vector2.left;
+                if (defaultOrientation == directions.right)
+                {
+
+                    direction = Vector2.left;
+
+                }
+                else
+                {
+
+                    direction = Vector2.right;
+
+                }
 
             }
 
@@ -270,8 +324,20 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         GetComponent<SpriteRenderer>().enabled = false;
         healthbar.gameObject.SetActive(false);
-        GetComponent<TriggerEvent>().triggered = true;
-        secondEvent.triggered = true;
+        if (GetComponent<TriggerEvent>() != null)
+        {
+
+            GetComponent<TriggerEvent>().triggered = true;
+
+        }
+        if (secondEvent != null)
+        {
+
+            secondEvent.triggered = true;
+
+        }
+
+
 
 
         //GetComponent<Animator>().enabled = false;

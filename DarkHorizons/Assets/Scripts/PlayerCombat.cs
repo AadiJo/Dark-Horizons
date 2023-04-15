@@ -110,8 +110,19 @@ public class PlayerCombat : MonoBehaviour
 
                 foreach (Collider2D boss in hitBosses)
                 {
+                    if (boss.GetComponent<Boss>() != null)
+                    {
 
-                    boss.GetComponent<Boss>().TakeDamage(attackDamage);
+                        boss.GetComponent<Boss>().TakeDamage(attackDamage);
+
+                    }
+                    else
+                    {
+
+                        boss.GetComponent<BigBoss>().TakeDamage(attackDamage);
+
+                    }
+
 
                 }
             }

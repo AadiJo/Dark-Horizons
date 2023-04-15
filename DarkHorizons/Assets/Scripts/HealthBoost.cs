@@ -13,7 +13,7 @@ public class HealthBoost : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
 
-            other.gameObject.GetComponent<PlayerHealth>().GainHealth(7f);
+            other.gameObject.GetComponent<PlayerHealth>().GainHealth(other.gameObject.GetComponent<PlayerHealth>().maxHealth - other.gameObject.GetComponent<PlayerHealth>().currentHealth);
             GetComponent<PolygonCollider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
             glow.SetActive(false);
