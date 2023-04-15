@@ -6,7 +6,13 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     public Animator animator;
-    public float transistionTime = 1f;
+    public float transistionTime = 0.1f;
+    private void Start()
+    {
+
+        Time.timeScale = 1;
+
+    }
 
     public void LoadNextLevel()
     {
