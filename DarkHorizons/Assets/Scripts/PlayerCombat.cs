@@ -24,6 +24,7 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
 
+        PauseMenu.GameisPaused = false;
         health = GetComponent<PlayerHealth>();
         rb = GetComponent<Rigidbody2D>();
         gameManager = FindObjectOfType<GameManager>();

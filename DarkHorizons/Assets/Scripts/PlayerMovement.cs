@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-
         if (health.dead)
         {
 
