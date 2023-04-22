@@ -18,12 +18,20 @@ public class SpeakWithinRange : MonoBehaviour
 
     void Update()
     {
-        if (Mathf.Abs(transform.position.x - player.transform.position.x) < 2)
+
+        if (GetComponent<SpriteRenderer>().color.a == 1f)
         {
 
-            dialouge.SetActive(true);
+            if (Mathf.Abs(transform.position.x - player.transform.position.x) < 5)
+            {
+
+                dialouge.SetActive(true);
+
+            }
 
         }
+
+
         if (Mathf.Abs(transform.position.x - player.transform.position.x) > 20)
         {
 
