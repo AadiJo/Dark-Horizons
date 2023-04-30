@@ -15,6 +15,8 @@ sysinfo.txt
 # vscode cache
 .vscode/
 ###
+.gitattributes
+###
 # VS/MD solution and project files
 ###
 [Ee]xportedObj/
