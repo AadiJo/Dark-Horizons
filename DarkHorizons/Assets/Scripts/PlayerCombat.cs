@@ -54,18 +54,6 @@ public class PlayerCombat : MonoBehaviour
 
         }
 
-        if (health.godMode)
-        {
-
-            attackDamage = 1000;
-
-        }
-        else
-        {
-
-            attackDamage = 10;
-
-        }
 
     }
 

@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
 
     public Slider healthBar;
+    public GameObject healthObject;
 
     public bool dead = false;
 
@@ -47,19 +48,16 @@ public class PlayerHealth : MonoBehaviour
     {
         SetHealthBar(maxHealth);
         animator = GetComponent<Animator>();
+
     }
 
     public void TakeDamage(float damage, float[] knockback)
     {
 
 
-        if (!godMode)
-        {
+        FindObjectOfType<AudioManager>().Play("PlayerHurt");
+        animator.SetTrigger("hurt");
 
-            FindObjectOfType<AudioManager>().Play("PlayerHurt");
-            animator.SetTrigger("hurt");
-
-        }
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb.velocity.x < 0)
@@ -124,6 +122,19 @@ public class PlayerHealth : MonoBehaviour
         {
 
             currentHealth = 30;
+
+        }
+        if (godMode)
+        {
+
+            healthObject.SetActive(false);
+
+
+        }
+        else
+        {
+
+            healthObject.SetActive(true);
 
         }
 
